@@ -1,0 +1,6 @@
+---
+- name: Enable and start PHP FPM service
+  service: 
+    name: rh-php56-php-fpm
+    state: started
+    enabled: yes
