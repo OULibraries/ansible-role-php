@@ -21,7 +21,7 @@ Probably depends on OULibraries.centos.
 Example Playbook
 ----------------
 
-```php
+```yaml
 - hosts: lamp.vagrant.localdomain
   sudo: yes
   roles:
