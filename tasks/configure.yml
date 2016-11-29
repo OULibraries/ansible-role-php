@@ -1,6 +1,20 @@
 ---
 - name: Enable and start PHP FPM service
-  service: 
+  service:
     name: rh-php56-php-fpm
     state: started
     enabled: yes
+
+- name: Set PHP timezone
+  replace:
+    dest: /etc/opt/rh/rh-php56/php.ini
+    regexp: >
+      ^;date.timezone =$
+    replace: "date.timezone = America/Chicago"
+
+# - name: Disable display of errors in browser
+#   replace:
+#     dest: /etc/opt/rh/rh-php56/php.ini
+#     regexp: >
+#       ^;display_errors = On$
+#     replace: "display_errors = Off"

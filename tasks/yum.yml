@@ -1,7 +1,11 @@
 ---
-- name: .
+- name: Install scl repo
   yum: name={{ item }} state=latest
   with_items:
-  - centos-release-scl
-  - rh-php56
-  - rh-php56-php-fpm
+    - centos-release-scl
+
+- name: Install php56 from scl
+  yum: name={{ item }} state=latest
+  with_items:
+    - rh-php56
+    - rh-php56-php-fpm
