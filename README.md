@@ -1,12 +1,19 @@
-OULibraries.sclphp
+OULibraries Software Collections PHP
 =========
 
-Install PHP 5.6 and PHP-FPM service for use with Apache and Nginx from Red Hat Software Collections. 
+This role will:
+
+* Install PHP 5.6 and the PHP-FPM service from Red Hat Software Collections.
+* Install composer to `/opt/php/bin/composer.phar`.
+
+PHP-FPM can be used with both Apache and Nginx, but this role doesn't
+currently configure either.
+
 
 Requirements
 ------------
 
-Currently none. 
+No requirements beyond basic ansible. 
 
 Role Variables
 --------------
@@ -32,9 +39,9 @@ Example Playbook
 License
 -------
 
-BSD
+TBD
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Written for OU Libraries. 
