@@ -39,7 +39,7 @@ Example Playbook
 License
 -------
 
-TBD
+[MIT](https://github.com/OULibraries/ansible-role-sclphp/blob/master/LICENSE)
 
 Author Information
 ------------------
