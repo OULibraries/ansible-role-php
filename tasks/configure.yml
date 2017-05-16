@@ -12,6 +12,15 @@
       ^;date.timezone =$
     replace: "date.timezone = America/Chicago"
 
+- name: Enable SCL PHP 5.6 for interactive users
+  copy:
+    src: enablephp56.sh
+    dest: /etc/profile.d
+    mode: 0755
+    owner: root
+    group: wheel
+  when: sclphp_global
+
 # - name: Disable display of errors in browser
 #   replace:
 #     dest: /etc/opt/rh/rh-php56/php.ini
