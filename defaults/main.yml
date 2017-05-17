@@ -1,2 +1,4 @@
 ---
 # defaults file for OULibraries.sclphp
+
+sclphp_global: true
