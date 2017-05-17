@@ -17,8 +17,10 @@ No requirements beyond basic ansible.
 
 Role Variables
 --------------
-
-Currently none. 
+```yaml
+# Globably enable SCL PHP for interactive users
+sclphp_global: true
+```
 
 Dependencies
 ------------
