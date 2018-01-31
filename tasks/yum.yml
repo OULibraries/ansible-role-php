@@ -13,3 +13,4 @@
   with_items:
     - rh-php56
     - rh-php56-php-fpm
+    - rh-php56-php-mysqlnd  
