@@ -28,17 +28,25 @@
 #       ^;display_errors = On$
 #     replace: "display_errors = Off"
 
+
+- name: Configure nginx-oriented php-fpm 
+  template: 
+    src: "www.conf.j2"
+    dest: "/etc/opt/rh/rh-php56/php-fpm.d/www.conf"
+    owner: nginx
+    group: wheel
+
 - name: Add symlink to make php logs more findable
   file:
     src: "/var/opt/rh/rh-php56/log/php-fpm"
     dest: "/var/log/php-fpm"
     state: link
-    owner: apache
+    owner: nginx
     group: wheel
 
 - name: Set group on php-fpm logs to allow wheel access
   file:
     path: "/var/opt/rh/rh-php56/log/php-fpm"
     state: directory
-    owner: apache
+    owner: nginx
     group: wheel
