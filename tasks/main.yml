@@ -1,8 +1,6 @@
 ---
-# tasks file for OULibraries.php
 - include: yum.yml
-  sudo: yes
+
 - include: configure.yml
-  sudo: yes
+
 - include: composer.yml
-  sudo: yes

@@ -1,16 +1,16 @@
 ---
 - name: Install scl repo
   yum:
-    name: "{{ item }}"
+    name:
+      - centos-release-scl
     state: present
-  with_items:
-    - centos-release-scl
 
-- name: Install php56 from scl
+- name: Install PHP from scl
   yum:
-    name: "{{ item }}"
+    name:
+      - "{{sclphp_version}}"
+      - "{{sclphp_version}}-php-fpm"
+      - "{{sclphp_version}}-php-mysqlnd"
+      - "{{sclphp_version}}-php-gd"
+      - "{{sclphp_version}}-php-mbstring"
     state: present
-  with_items:
-    - rh-php56
-    - rh-php56-php-fpm
-    - rh-php56-php-mysqlnd  

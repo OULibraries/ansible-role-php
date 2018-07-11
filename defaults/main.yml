@@ -2,3 +2,5 @@
 # defaults file for OULibraries.sclphp
 
 sclphp_global: true
+
+sclphp_version: rh-php56

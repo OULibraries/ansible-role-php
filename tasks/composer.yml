@@ -36,7 +36,7 @@
   become: yes
   become_user: composer
   command: >
-    /opt/rh/rh-php56/root/usr/bin/php /tmp/downloads/composer-installer.php
+    /opt/rh/{{sclphp_version}}/root/usr/bin/php /tmp/downloads/composer-installer.php
   args:
     chdir: /opt/php/bin
     creates: /opt/php/bin/composer.phar
@@ -44,6 +44,15 @@
 - name: Make sure Composer is executable
   file:
     path: /opt/php/bin/composer.phar
+    owner: composer
+    group: wheel
+    mode: 0775
+
+- name: Create composer symlink
+  file:
+    state: link
+    src: /opt/php/bin/composer.phar
+    dest: /opt/php/bin/composer 
     owner: composer
     group: wheel
     mode: 0775

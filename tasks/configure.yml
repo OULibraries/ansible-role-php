@@ -1,21 +1,21 @@
 ---
 - name: Enable and start PHP FPM service
   service:
-    name: rh-php56-php-fpm
+    name: "{{sclphp_version}}-php-fpm"
     state: started
     enabled: yes
 
 - name: Set PHP timezone
   replace:
-    dest: /etc/opt/rh/rh-php56/php.ini
+    dest: "/etc/opt/rh/{{sclphp_version}}/php.ini"
     regexp: >
       ^;date.timezone =$
     replace: "date.timezone = America/Chicago"
 
 - name: Enable SCL PHP 5.6 for interactive users
-  copy:
-    src: enablephp56.sh
-    dest: /etc/profile.d
+  template:
+    src: enablephp.sh.j2
+    dest: /etc/profile.d/enablephp.sh
     mode: 0755
     owner: root
     group: wheel
@@ -23,22 +23,22 @@
 
 # - name: Disable display of errors in browser
 #   replace:
-#     dest: /etc/opt/rh/rh-php56/php.ini
+#     dest: /etc/opt/rh/{{sclphp_version}}/php.ini
 #     regexp: >
 #       ^;display_errors = On$
 #     replace: "display_errors = Off"
 
 
-- name: Configure nginx-oriented php-fpm 
-  template: 
+- name: Configure nginx-oriented php-fpm
+  template:
     src: "www.conf.j2"
-    dest: "/etc/opt/rh/rh-php56/php-fpm.d/www.conf"
+    dest: "/etc/opt/rh/{{sclphp_version}}/php-fpm.d/www.conf"
     owner: nginx
     group: wheel
 
 - name: Add symlink to make php logs more findable
   file:
-    src: "/var/opt/rh/rh-php56/log/php-fpm"
+    src: "/var/opt/rh/{{sclphp_version}}/log/php-fpm"
     dest: "/var/log/php-fpm"
     state: link
     owner: nginx
@@ -46,7 +46,7 @@
 
 - name: Set group on php-fpm logs to allow wheel access
   file:
-    path: "/var/opt/rh/rh-php56/log/php-fpm"
+    path: "/var/opt/rh/{{sclphp_version}}/log/php-fpm"
     state: directory
     owner: nginx
     group: wheel
