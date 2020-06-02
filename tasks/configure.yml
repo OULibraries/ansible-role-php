@@ -20,7 +20,6 @@
     name: "{{sclphp_version}}-php-fpm"
     state: started
     enabled: yes
-    force: yes
 
 - name: Set PHP timezone
   replace:
