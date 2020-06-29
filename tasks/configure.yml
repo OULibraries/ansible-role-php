@@ -1,5 +1,21 @@
 ---
-- name: Enable and start PHP FPM service
+
+- name: Check for existing installations
+  find:
+    path: "/opt/rh/"
+    file_type: directory
+    patterns: "rh-php*"
+  register: old_versions
+
+- name: Ensure all SCLPHP versions are stopped and disabled
+  service:
+    name: "{{ item.path | basename }}-php-fpm"
+    state: stopped
+    enabled: false
+  with_items:
+    - "{{ old_versions.files }}"
+
+- name: Enable and start defined PHP FPM service
   service:
     name: "{{sclphp_version}}-php-fpm"
     state: started
